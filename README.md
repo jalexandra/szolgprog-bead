@@ -1,0 +1,1 @@
+# szolgprog-bead
