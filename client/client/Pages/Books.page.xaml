@@ -1,0 +1,38 @@
+﻿<Page x:Class="client.Pages.Books"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:client.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Books" Background="White">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <ListBox Grid.Column="0" x:Name="lst_books" Padding="10" />
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Margin="10px">
+                <TextBlock Text="Lorem Ipsum" FontSize="20px" x:Name="lbl_bookTitle"></TextBlock>
+                <TextBlock Text="Lorem Ipsum, Dolor, Sit Amet" FontSize="13px" x:Name="lbl_bookAuthors"></TextBlock>
+                <Rectangle Height="2" Fill="#FF020000" Margin="0 5 0 5" />
+                <TextBlock Text="Release year: 2021" x:Name="lbl_releaseYear"/>
+                <TextBlock Text="Rented by: ..." x:Name="lbl_rentedBy" />
+                <TextBlock Text="Created at: " x:Name="lbl_createdAt" />
+            </StackPanel>
+            <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0 0 0 0" HorizontalAlignment="Center">
+                <Button Content="Return" Width="70" Height="30" Margin="5"/>
+                <Button Content="Rent" Width="70" Height="30" Margin="5"/>
+                <Button Content="Edit" Width="70" Height="30" Margin="5"/>
+                <Button Content="New" Width="70" Height="30" Margin="5"/>
+                <Button Content="Delete" Width="70" Height="30" Margin="5"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>
