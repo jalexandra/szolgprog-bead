@@ -12,7 +12,7 @@ import {userMiddleware} from "../middlewares/user.middleware";
 
 export class AuthController extends Controller {
     get path() {
-        return '/auth'
+        return 'auth'
     }
 
     routes() {
@@ -26,22 +26,26 @@ export class AuthController extends Controller {
         if(!(email && password))
             return abort(res, 400, 'Email and password are required')
 
-        const user = await Find<IUser>(`SELECT * FROM users WHERE email = ?`, email)
-        if (!user) return abort(res, 401)
+        const user = await Find<IUser>(`SELECT id, name, password, email, phone, is_admin, created_at FROM users WHERE email = ?`, email)
+        if (!user) return abort(res, 401, 'Invalid email')
 
         const valid = await compare(password, user.password!)
-        if (!valid) return abort(res, 403)
+        if (!valid) return abort(res, 403, 'Invalid password')
 
         const token = generateToken()
         await Execute('UPDATE users SET api_key = ? WHERE id = ?', token, user.id)
-        return res.json({token})
+        delete user.password
+        user.is_admin = (user.is_admin as any) == 1
+        return res.json({token, user})
     }
 
     async register(req: Request, res: Response) {
+        console.log(req.body)
+        console.log(typeof req.body)
         const email = req.body?.email
         if (!email) return abort(res, 400, 'Email is required')
 
-        const user = await Find<IUser>(`SELECT *
+        let user = await Find<IUser>(`SELECT *
                                         FROM users
                                         WHERE email = ?`, email)
         if (user) return abort(res, 400, 'Email already exists')
@@ -57,7 +61,8 @@ export class AuthController extends Controller {
             'INSERT INTO users (name, email, password, api_key) VALUES (?, ?, ?, ?)',
             name, email, await generatePassword(password), token
         )
-        return send(res, {token}, 201)
+        user = await Find<IUser>(`SELECT id, name, email, phone, is_admin, created_at FROM users WHERE email = ?`, email)
+        return send(res, {token, user}, 201)
     }
 
     async profile(req: Request, res: Response) {

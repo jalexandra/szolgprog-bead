@@ -4,8 +4,7 @@ using Newtonsoft.Json.Serialization;
 
 namespace client.Responses
 {
-    [JsonObject(NamingStrategyType = typeof(SnakeCaseNamingStrategy))]
-    class LoginResponse
+    public class LoginResponse : EmptyResponse
     {
         public string Token { get; set; }
         public User User { get; set; }

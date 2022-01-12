@@ -19,10 +19,10 @@ export const db = mysql.createConnection({
 const app = new App(3000, db)
 
 const controllers: Controller[] = [
+    new AuthController(),
     new AuthorController(),
     new BookController(),
     new UserController(),
-    new AuthController()
 ]
 
 const middlewares: any[] = [

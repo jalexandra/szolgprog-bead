@@ -6,13 +6,14 @@
       xmlns:local="clr-namespace:client.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
+      Loaded="Books_OnLoaded"
       Title="Books" Background="White">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ListBox Grid.Column="0" x:Name="lst_books" Padding="10" />
+        <ListBox Grid.Column="0" x:Name="lst_books" SelectionChanged="Lst_books_OnSelectionChanged" Padding="10" />
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="5*"/>
@@ -23,15 +24,15 @@
                 <TextBlock Text="Lorem Ipsum, Dolor, Sit Amet" FontSize="13px" x:Name="lbl_bookAuthors"></TextBlock>
                 <Rectangle Height="2" Fill="#FF020000" Margin="0 5 0 5" />
                 <TextBlock Text="Release year: 2021" x:Name="lbl_releaseYear"/>
-                <TextBlock Text="Rented by: ..." x:Name="lbl_rentedBy" />
+                <TextBlock Text="Rented by: ..." x:Name="lbl_isRented" />
                 <TextBlock Text="Created at: " x:Name="lbl_createdAt" />
             </StackPanel>
             <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0 0 0 0" HorizontalAlignment="Center">
                 <Button Content="Return" Width="70" Height="30" Margin="5"/>
                 <Button Content="Rent" Width="70" Height="30" Margin="5"/>
-                <Button Content="Edit" Width="70" Height="30" Margin="5"/>
-                <Button Content="New" Width="70" Height="30" Margin="5"/>
-                <Button Content="Delete" Width="70" Height="30" Margin="5"/>
+                <Button Content="Edit" Width="70" Height="30" Margin="5" Click="btn_EditBook_Click"/>
+                <Button Content="New" Width="70" Height="30" Margin="5" Click="Btn_NewBook_Click"/>
+                <Button Content="Delete" Width="70" Height="30" Margin="5" Click="Btn_DeleteBookButton"/>
             </StackPanel>
         </Grid>
     </Grid>

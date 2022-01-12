@@ -1,19 +1,7 @@
-﻿using client.Core;
-using client.Windows;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+﻿using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using client.Core;
+using client.Windows;
 
 namespace client
 {
@@ -22,12 +10,12 @@ namespace client
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static MainWindow instance;
+        public static MainWindow Instance { get; private set; }
 
         public MainWindow()
         {
             InitializeComponent();
-            instance = this;
+            Instance = this;
         }
 
         private void BooksButton_Clicked(object sender, RoutedEventArgs e)
@@ -42,7 +30,12 @@ namespace client
 
         internal void RefreshUser()
         {
-            this.Dispatcher.Invoke(() => this.lbl_userName.Text = $"Logged in: {Config.CurrentUser.Name}");
+            Dispatcher.Invoke(() =>
+            {
+                if(Config.CurrentUser is not null)
+                    lbl_userName.Text = $"Logged in: {Config.CurrentUser.Name}";
+                Navigator.To("Books");
+            });
         }
 
         private void UsersButton_Clicked(object sender, RoutedEventArgs e)
@@ -55,7 +48,8 @@ namespace client
             var child = new LoginWindow(this);
             child.Show();
             child.Focus();
-            this.IsEnabled = false;
+            IsEnabled = false;
+            child.Closing += (_, _) => IsEnabled = true;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

@@ -4,7 +4,7 @@ using System;
 
 namespace client.Models
 {
-    class User : Model
+    public class User : Model
     {
         public override string InternalName => "users";
         
@@ -23,9 +23,14 @@ namespace client.Models
             IsAdmin = is_admin;
         }
 
-        public static User FromJson(string json)
+        public static User FromJson(string json) => JsonConvert.DeserializeObject<User>(json);
+
+        public static User Find(int? rentedBy)
         {
-            return JsonConvert.DeserializeObject<User>(json);
+            if (rentedBy is null)
+                return null;
+
+            return null; // TODO: Implement
         }
     }
 }

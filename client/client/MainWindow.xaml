@@ -18,7 +18,7 @@
             <Button Content="Authors" MinWidth="70px" Click="AuthorsButton_Clicked" x:Name="btn_authors"></Button>
             <Button Content="Users" MinWidth="70px" Click="UsersButton_Clicked" IsEnabled="False" x:Name="btn_users"></Button>
         </StackPanel>
-        <Frame x:Name="frm_content" Grid.Row="1" Padding="10" Source="Pages/Books.page.xaml">
+        <Frame x:Name="frm_content" NavigationUIVisibility="Hidden" Grid.Row="1" Padding="10" Source="Pages/Books.page.xaml">
         </Frame>
         <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="10 0 10 0">
             <TextBlock Text="Guest - Login" FontSize="30px" x:Name="lbl_userName" MouseLeftButtonDown="UserNameLabel_Clicked"></TextBlock>

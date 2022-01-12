@@ -45,7 +45,7 @@ export function send(res: express.Response, data: any, status: number = 200): tr
 }
 
 export function abort(res: express.Response, status: number, message: string|null = null): false {
-    res.status(status).send(message ? { message } : { }).end()
+    res.status(status).send(message ? { message } : { })
     res.end()
     return false
 }

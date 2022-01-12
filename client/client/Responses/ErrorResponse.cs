@@ -3,9 +3,10 @@ using Newtonsoft.Json.Serialization;
 
 namespace client.Responses
 {
-    [JsonObject(NamingStrategyType = typeof(SnakeCaseNamingStrategy))]
-    class ErrorResponse
+    public class ErrorResponse : EmptyResponse
     {
+        public ErrorResponse(string message) => Message = message;
+
         public string Message { get; set; }
     }
 }

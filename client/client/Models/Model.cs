@@ -15,11 +15,11 @@ namespace client.Models
 
         public abstract string InternalName { get; }
 
-        public Task<HttpResponseMessage> Save()
+        public Task<RestResponse<string>> Save()
         {
             return Id is null
-                ? Rest.Post(InternalName, this)
-                : Rest.Patch($"{InternalName}/${Id}", this);
+                ? Rest.Post<string>(InternalName, this)
+                : Rest.Patch<string>($"{InternalName}/${Id}", this);
         }
 
         public string ToJson()

@@ -1,12 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "hczsMrkr8N2i9mc5N+0sonX0PUrTdIR2OoCLFfIXBoVCGOVBpdVQxJf+6gjjRIl4USHz3W5FCwSmKpgBhS6x7g==",
+  "dgSpecHash": "UCmUPZriAZ0UU2xZBvhWcyld9tkq5blLOeIEyEUcmZYBts2SEmOjrzQfnWVLOt/fSDl6m6m+4LymUnFnior8VA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ja200\\Documents\\Dokumentumok_gep\\Szolg_Prog\\szolgprog-bead\\client\\client\\client.csproj",
+  "projectFilePath": "C:\\Users\\dombi\\source\\repos\\szolgprog-bead\\client\\client\\client.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\ja200\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
-    "C:\\Users\\ja200\\.nuget\\packages\\restsharp\\106.15.0\\restsharp.106.15.0.nupkg.sha512",
-    "C:\\Users\\ja200\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.13\\microsoft.netcore.app.host.win-x64.5.0.13.nupkg.sha512"
+    "C:\\Users\\dombi\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\dombi\\.nuget\\packages\\restsharp\\106.15.0\\restsharp.106.15.0.nupkg.sha512",
+    "C:\\Users\\dombi\\.nuget\\packages\\microsoft.netcore.app.ref\\5.0.0\\microsoft.netcore.app.ref.5.0.0.nupkg.sha512",
+    "C:\\Users\\dombi\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\5.0.0\\microsoft.windowsdesktop.app.ref.5.0.0.nupkg.sha512",
+    "C:\\Users\\dombi\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\5.0.0\\microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512",
+    "C:\\Users\\dombi\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.13\\microsoft.netcore.app.host.win-x64.5.0.13.nupkg.sha512"
   ],
   "logs": []
 }

@@ -84,14 +84,31 @@ export class BookController extends Controller{
         const release_year = req.body?.release_year
         if (!release_year) return abort(res, 400, 'No year of release provided')
 
+        const authors: number[] = req.body?.authors ?? []
+        if(authors.length === 0) return abort(res, 400, 'No authors provided')
+
+        let foundAllAuthor = true
+        await forEach(authors).do(author_id =>
+            Find<IAuthor>(`SELECT * FROM authors WHERE id = ?`, author_id)
+                .then(author => {
+                    if (!author) foundAllAuthor = false
+                }))
+        if (!foundAllAuthor) return abort(res, 400, 'One or more authors not found')
+
         await Execute(`INSERT INTO books (title, release_year) VALUES (?, ?)`, title, release_year)
+
+        const book = await Find<IBook>(`SELECT * FROM books WHERE title = ? AND release_year = ?`, title, release_year)
+
+        await forEach(authors).do(author_id =>
+            Execute(`INSERT INTO authors_books (book_id, author_id) VALUES (?, ?)`, book.id, author_id)
+        )
         return send(res, null, 201)
     }
 
     async destroy(req: Request, res: Response) {
         const id = req.params?.id
 
-        await Execute(`DELETE FROM books WHERE id = ?, id`)
+        await Execute('DELETE FROM books WHERE id = ?', id)
 
         return send(res, null, 204)
     }

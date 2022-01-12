@@ -1,4 +1,5 @@
-﻿using client.Models;
+﻿// ReSharper disable InconsistentNaming
+using client.Models;
 using Newtonsoft.Json;
 using System;
 using System.IO;

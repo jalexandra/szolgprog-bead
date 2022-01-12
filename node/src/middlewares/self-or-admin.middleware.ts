@@ -6,7 +6,7 @@ export async function selfOrAdminMiddleware(req: Request, res: Response, next: N
   const user = await userMiddlewareLogic(req, res, next)
 
   if (!(user?.is_admin || user?.id?.toString() === req.params?.id)) {
-    send(res, null, 403)
+    send(res, {trace: "self-or-admin"}, 403)
     return false
   }
 
