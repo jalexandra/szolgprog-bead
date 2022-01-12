@@ -54,15 +54,43 @@ namespace client.Pages
             DoPatch();
         }
 
-        private void DoCreate()
+        private async Task DoCreate()
         {
-            BookService.Add(txt_bookTitle.Text, txt_bookReleaseYear.Text, txt_bookAuthors.Text);
+            var res = await Rest.Post<EmptyResponse>(
+                "books",
+                new BookRequest(txt_bookTitle.Text, txt_bookReleaseYear.Text, txt_bookAuthors.Text)
+            );
+            if (res.IsSuccess)
+            {
+                MessageBox.Show("Book created", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                Navigator.To("Books");
+                return;
+            }
+            
+            MessageBox.Show($"Book creation failed \n {res.ErrorResponse.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         private async Task DoPatch()
         {
-            if(await BookService.Edit(currentBook.Id, txt_bookTitle.Text, txt_bookReleaseYear.Text, txt_bookAuthors.Text))
+            var res = await Rest.Patch<EmptyResponse>(
+                $"books/{currentBook.Id}",
+                new BookRequest(txt_bookTitle.Text, txt_bookReleaseYear.Text, txt_bookAuthors.Text)
+            );
+            if (res.IsSuccess)
+            {
+                MessageBox.Show("Book edited successfully",
+                    "Success",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
+                Navigator.To("Books");
                 currentBook = null;
+                return;
+            }
+
+            MessageBox.Show($"Something went wrong \n {res.ErrorResponse.Message}",
+                "Error",
+                MessageBoxButton.OK,
+                MessageBoxImage.Error);
         }
 
         public static void Add()

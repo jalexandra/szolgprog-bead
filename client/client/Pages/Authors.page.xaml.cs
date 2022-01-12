@@ -1,4 +1,5 @@
-﻿using System;
+﻿using client.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,21 @@ namespace client.Pages
     /// </summary>
     public partial class Authors : Page
     {
+        private readonly List<Author> _authors = new();
         public Authors()
         {
             InitializeComponent();
+        }
+
+        private void Authors_Loaded(object sender, RoutedEventArgs e)
+        {
+            InitAuthors();
+        }
+
+        private async Task InitAuthors()
+        {
+            _authors.Clear();
+            //_authors.AddRange();
         }
     }
 }

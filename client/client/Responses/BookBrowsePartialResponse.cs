@@ -31,7 +31,7 @@ namespace client.Responses
         public int AuthorId { get; }
         public int BookId { get; }
 
-        public Author Model => new(Id.ToString(), Name, CreatedAt);
+        public AuthorBrowsePartialResponse Model => new(Id.ToString(), Name, CreatedAt);
     }
 
     public class BookBrowsePartialResponse : EmptyResponse
@@ -61,7 +61,7 @@ namespace client.Responses
         public DateTime CreatedAt { get; }
         public List<AuthorInBookBrowseResponse> Authors { get; }
 
-        public Book Model => new(
+        public BookInAuthorBrowseResponse Model => new(
                 Id.ToString(),
                 Title,
                 (ushort) ReleaseYear,

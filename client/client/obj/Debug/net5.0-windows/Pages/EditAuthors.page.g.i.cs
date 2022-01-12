@@ -133,7 +133,7 @@ namespace client.Pages {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/client;component/pages/editauthors.page.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/client;V1.0.0.0;component/pages/editauthors.page.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Pages\EditAuthors.page.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
